@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.express as px
 import numpy as np
 from model import train_model
+from model import compare_models
 
 st.sidebar.header("Model Settings")
 
@@ -139,5 +140,25 @@ fig_res.update_layout(
     yaxis_title="Residual",
     title="Residual vs Hours"
 )
+
+st.subheader("Model Performance Comparison (R² Score)")
+
+comparison_results = compare_models()
+
+import plotly.express as px
+
+comparison_df = pd.DataFrame({
+    "Model": list(comparison_results.keys()),
+    "R2 Score": list(comparison_results.values())
+})
+
+fig_compare = px.bar(
+    comparison_df,
+    x="Model",
+    y="R2 Score",
+    title="Comparison of Model Performance"
+)
+
+st.plotly_chart(fig_compare)
 
 st.plotly_chart(fig_res)

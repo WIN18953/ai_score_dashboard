@@ -32,3 +32,12 @@ def train_model(degree=1):
 @st.cache_data
 def load_data():
     return pd.read_csv("data.csv")
+
+def compare_models():
+    results = {}
+
+    for degree in [1, 2, 3]:
+        model, df, r2, mse, poly, X_train, X_test, y_train, y_test, predictions = train_model(degree)
+        results[f"Degree {degree}"] = r2
+
+    return results
