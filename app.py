@@ -5,7 +5,7 @@ from model import train_model
 
 st.title("AI Student Score Prediction Dashboard")
 
-model, df, r2, mse, coef, intercept = train_model()
+model, df, r2, mse, coef, intercept, X_test, y_test, predictions = train_model()
 
 # แสดงค่าโมเดล
 st.subheader("Model Performance")
@@ -42,3 +42,29 @@ fig.add_scatter(
 st.plotly_chart(fig)
 st.subheader("Model Equation")
 st.write(f"Score = {round(coef,2)} * Hours + {round(intercept,2)}")
+
+# Residual Plot
+st.subheader("Residual Plot")
+
+residuals = y_test - predictions
+
+import plotly.graph_objects as go
+
+fig_res = go.Figure()
+
+fig_res.add_scatter(
+    x=X_test["Hours"],
+    y=residuals,
+    mode="markers",
+    name="Residuals"
+)
+
+fig_res.add_hline(y=0)
+
+fig_res.update_layout(
+    xaxis_title="Hours",
+    yaxis_title="Residual",
+    title="Residual vs Hours"
+)
+
+st.plotly_chart(fig_res)
