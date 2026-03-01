@@ -206,3 +206,7 @@ R² (coefficient of determination) measures how well the model explains the vari
 Mean Squared Error (MSE) measures the average squared difference between actual and predicted values.
 Lower MSE indicates better model performance.
 """)
+
+st.markdown("---")
+st.markdown("Built with ❤️ using Streamlit and Scikit-Learn")
+st.markdown("Author: Winyou | AI Student Project")
