@@ -5,7 +5,9 @@ from model import train_model
 
 st.title("AI Student Score Prediction Dashboard")
 
-model, df, r2, mse, coef, intercept, X_test, y_test, predictions = train_model()
+degree = st.slider("Select Polynomial Degree", 1, 3, 1)
+
+model, df, r2, mse, poly, X_test, y_test, predictions = train_model(degree)
 
 # แสดงค่าโมเดล
 st.subheader("Model Performance")
@@ -18,7 +20,8 @@ col2.metric("MSE", round(mse, 2))
 hours = st.slider("Select Study Hours", 0, 12, 5)
 
 # ทำนาย
-prediction = model.predict([[hours]])[0]
+hours_array = poly.transform([[hours]])
+prediction = model.predict(hours_array)[0]
 
 st.subheader("Prediction Result")
 st.success(f"Predicted Score: {round(prediction,2)}")
@@ -27,7 +30,8 @@ st.success(f"Predicted Score: {round(prediction,2)}")
 fig = px.scatter(df, x="Hours", y="Score", title="Hours vs Score")
 
 x_range = np.linspace(0, 12, 100)
-y_range = model.predict(x_range.reshape(-1,1))
+x_poly = poly.transform(x_range.reshape(-1,1))
+y_range = model.predict(x_poly)
 
 fig.add_scatter(x=x_range, y=y_range, mode="lines", name="Regression Line")
 
