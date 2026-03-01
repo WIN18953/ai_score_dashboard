@@ -15,7 +15,13 @@ if model_type == "Linear Regression":
 else:
     degree = st.slider("Select Polynomial Degree", 2, 3, 2)
 
-model, df, r2, mse, poly, X_test, y_test, predictions = train_model(degree)
+if "model_data" not in st.session_state:
+    st.session_state.model_data = train_model(degree)
+
+if st.button("Retrain Model"):
+    st.session_state.model_data = train_model(degree)
+
+model, df, r2, mse, poly, X_test, y_test, predictions = st.session_state.model_data
 
 # แสดงค่าโมเดล
 st.subheader("Model Performance")
