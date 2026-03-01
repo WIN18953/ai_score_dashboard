@@ -22,3 +22,11 @@ This project is a Machine Learning dashboard built with Streamlit.
 
 2. Run the app:
    streamlit run app.py
+
+## 📂 Project Structure
+project-folder/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+└── dataset.csv
