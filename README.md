@@ -41,3 +41,9 @@ This project uses:
 The model is trained using Scikit-learn and evaluated using:
 - Mean Absolute Error (MAE)
 - R² Score
+
+## 📸 Application Preview
+
+Below is a preview of the dashboard interface:
+
+![Dashboard Preview](screenshot.png)
