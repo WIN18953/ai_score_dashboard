@@ -141,6 +141,8 @@ fig_res.update_layout(
     title="Residual vs Hours"
 )
 
+st.plotly_chart(fig_res)
+
 st.subheader("Model Performance Comparison (R² Score)")
 
 comparison_results = compare_models()
@@ -161,4 +163,39 @@ fig_compare = px.bar(
 
 st.plotly_chart(fig_compare)
 
-st.plotly_chart(fig_res)
+st.subheader("📘 Model Explanation")
+
+st.markdown("""
+### What is Linear Regression?
+Linear Regression is a supervised learning algorithm used to predict a continuous value.
+It models the relationship between input (Hours Studied) and output (Score) as:
+
+Score = aX + b
+
+Where:
+- a = slope (coefficient)
+- b = intercept
+
+---
+
+### What is Polynomial Regression?
+Polynomial Regression extends Linear Regression by adding higher-degree terms:
+
+Score = a₂X² + a₁X + b
+
+This allows the model to capture nonlinear relationships.
+
+---
+
+### What is R² Score?
+R² (coefficient of determination) measures how well the model explains the variance in the data.
+
+- R² = 1 → Perfect prediction
+- R² = 0 → No predictive power
+
+---
+
+### What is MSE?
+Mean Squared Error (MSE) measures the average squared difference between actual and predicted values.
+Lower MSE indicates better model performance.
+""")
