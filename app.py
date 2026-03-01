@@ -40,6 +40,23 @@ prediction = model.predict(hours_array)[0]
 st.subheader("Prediction Result")
 st.success(f"Predicted Score: {round(prediction,2)}")
 
+import pandas as pd
+
+# Create prediction dataframe
+prediction_df = pd.DataFrame({
+    "Hours": [hours],
+    "Predicted Score": [round(prediction, 2)],
+    "Model Type": [model_type],
+    "Degree": [degree]
+})
+
+st.download_button(
+    label="Download Prediction as CSV",
+    data=prediction_df.to_csv(index=False),
+    file_name="prediction_result.csv",
+    mime="text/csv"
+)
+
 # กราฟ
 import plotly.graph_objects as go
 
