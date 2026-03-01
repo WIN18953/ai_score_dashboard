@@ -4,7 +4,14 @@ import numpy as np
 from model import train_model
 from model import compare_models
 
-st.sidebar.header("Model Settings")
+st.set_page_config(
+    page_title="AI Score Prediction Dashboard",
+    page_icon="📊",
+    layout="wide"
+)
+
+st.title("🎓 AI Student Score Prediction Dashboard")
+st.markdown("An interactive machine learning dashboard for predicting student exam scores.")
 
 model_type = st.sidebar.selectbox(
     "Select Model Type",
