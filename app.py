@@ -3,9 +3,9 @@ import plotly.express as px
 import numpy as np
 from model import train_model
 
-st.title("AI Student Score Prediction Dashboard")
+st.sidebar.header("Model Settings")
 
-model_type = st.selectbox(
+model_type = st.sidebar.selectbox(
     "Select Model Type",
     ["Linear Regression", "Polynomial Regression"]
 )
@@ -13,12 +13,12 @@ model_type = st.selectbox(
 if model_type == "Linear Regression":
     degree = 1
 else:
-    degree = st.slider("Select Polynomial Degree", 2, 3, 2)
+    degree = st.sidebar.slider("Select Polynomial Degree", 2, 3, 2)
 
 if "model_data" not in st.session_state:
     st.session_state.model_data = train_model(degree)
 
-if st.button("Retrain Model"):
+if st.sidebar.button("Retrain Model"):
     st.session_state.model_data = train_model(degree)
 
 model, df, r2, mse, poly, X_train, X_test, y_train, y_test, predictions = st.session_state.model_data
