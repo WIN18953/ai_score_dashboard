@@ -5,7 +5,15 @@ from model import train_model
 
 st.title("AI Student Score Prediction Dashboard")
 
-degree = st.slider("Select Polynomial Degree", 1, 3, 1)
+model_type = st.selectbox(
+    "Select Model Type",
+    ["Linear Regression", "Polynomial Regression"]
+)
+
+if model_type == "Linear Regression":
+    degree = 1
+else:
+    degree = st.slider("Select Polynomial Degree", 2, 3, 2)
 
 model, df, r2, mse, poly, X_test, y_test, predictions = train_model(degree)
 
