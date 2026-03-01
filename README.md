@@ -47,3 +47,10 @@ The model is trained using Scikit-learn and evaluated using:
 Below is a preview of the dashboard interface:
 
 ![Dashboard Preview](screenshot.png)
+
+## 🚀 Future Improvements
+
+- Add more machine learning models
+- Deploy to Streamlit Cloud
+- Improve UI design
+- Add user authentication system
