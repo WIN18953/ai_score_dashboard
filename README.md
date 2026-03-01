@@ -30,3 +30,14 @@ project-folder/
 ├── requirements.txt
 ├── README.md
 └── dataset.csv
+
+## 🤖 Machine Learning Model
+
+This project uses:
+
+- Linear Regression
+- Polynomial Regression
+
+The model is trained using Scikit-learn and evaluated using:
+- Mean Absolute Error (MAE)
+- R² Score
