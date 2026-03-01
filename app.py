@@ -18,6 +18,7 @@ st.set_page_config(
     layout="wide"
 )
 
+
 st.title("🎓 AI Student Score Prediction Dashboard")
 st.markdown("An interactive machine learning dashboard for predicting student exam scores.")
 
