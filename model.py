@@ -22,4 +22,4 @@ def train_model():
     r2 = r2_score(y_test, predictions)
     mse = mean_squared_error(y_test, predictions)
 
-    return model, df, r2, mse
+    return model, df, r2, mse, model.coef_[0], model.intercept_

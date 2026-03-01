@@ -5,7 +5,7 @@ from model import train_model
 
 st.title("AI Student Score Prediction Dashboard")
 
-model, df, r2, mse = train_model()
+model, df, r2, mse, coef, intercept = train_model()
 
 # แสดงค่าโมเดล
 st.subheader("Model Performance")
@@ -40,3 +40,5 @@ fig.add_scatter(
 )
 
 st.plotly_chart(fig)
+st.subheader("Model Equation")
+st.write(f"Score = {round(coef,2)} * Hours + {round(intercept,2)}")
