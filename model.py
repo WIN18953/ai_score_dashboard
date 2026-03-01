@@ -26,4 +26,4 @@ def train_model(degree=1):
     r2 = r2_score(y_test, predictions)
     mse = mean_squared_error(y_test, predictions)
 
-    return model, df, r2, mse, poly, X_test, y_test, predictions
+    return model, df, r2, mse, poly, X_train, X_test, y_train, y_test, predictions

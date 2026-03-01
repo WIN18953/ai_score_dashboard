@@ -21,7 +21,7 @@ if "model_data" not in st.session_state:
 if st.button("Retrain Model"):
     st.session_state.model_data = train_model(degree)
 
-model, df, r2, mse, poly, X_test, y_test, predictions = st.session_state.model_data
+model, df, r2, mse, poly, X_train, X_test, y_train, y_test, predictions = st.session_state.model_data
 
 # แสดงค่าโมเดล
 st.subheader("Model Performance")
@@ -41,7 +41,45 @@ st.subheader("Prediction Result")
 st.success(f"Predicted Score: {round(prediction,2)}")
 
 # กราฟ
-fig = px.scatter(df, x="Hours", y="Score", title="Hours vs Score")
+import plotly.graph_objects as go
+
+fig = go.Figure()
+
+# Train points
+fig.add_scatter(
+    x=poly.inverse_transform(X_train)[:,1],
+    y=y_train,
+    mode="markers",
+    name="Train Data"
+)
+
+# Test points
+fig.add_scatter(
+    x=poly.inverse_transform(X_test)[:,1],
+    y=y_test,
+    mode="markers",
+    name="Test Data"
+)
+
+# Regression line
+x_range = np.linspace(0, 12, 100)
+x_poly = poly.transform(x_range.reshape(-1,1))
+y_range = model.predict(x_poly)
+
+fig.add_scatter(
+    x=x_range,
+    y=y_range,
+    mode="lines",
+    name="Regression Line"
+)
+
+fig.update_layout(
+    title="Train vs Test with Regression Line",
+    xaxis_title="Hours",
+    yaxis_title="Score"
+)
+
+st.plotly_chart(fig)
 
 x_range = np.linspace(0, 12, 100)
 x_poly = poly.transform(x_range.reshape(-1,1))
