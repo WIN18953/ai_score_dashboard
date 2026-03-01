@@ -209,7 +209,3 @@ Measures how well the model explains variance.
 ### MSE
 Measures average squared prediction error.
 """)
-
-st.markdown("---")
-st.markdown("Built with ❤️ using Streamlit and Scikit-Learn")
-st.markdown("Author: Winyou | AI Student Project")
